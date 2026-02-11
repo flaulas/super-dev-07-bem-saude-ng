@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { RegistroStatusTag } from '../../../core/components/registro-status-tag/registro-status-tag';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AutoFocus } from 'primeng/autofocus';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { PacienteResponseModel } from '../../../models/paciente.model';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DatePickerModule } from 'primeng/datepicker';
+import { TextareaModule } from 'primeng/textarea';
+import { FluidModule } from 'primeng/fluid';
 
 @Component({
   selector: 'app-list',
-  imports: [ButtonModule, SelectModule, TableModule, RegistroStatusTag, FormsModule, AutoFocus, DialogModule, InputTextModule],
+  imports: [ButtonModule, SelectModule, TableModule, RegistroStatusTag, FormsModule, AutoFocus, DialogModule, InputTextModule,
+    InputMaskModule, DatePickerModule, TextareaModule, FluidModule, ReactiveFormsModule
+  ],
   templateUrl: './list.html',
 })
 export class List {
@@ -19,6 +25,21 @@ export class List {
   filtroSelecionado: string = "Todos";
   pesquisa: string = "";
   visible: boolean = false;
+
+  private readonly formBuilder = inject(FormBuilder);
+
+  pacienteForm = this.formBuilder.group({
+    nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+    telefone: ['', [Validators.maxLength(15)]],
+    cpf: ['', [Validators.required, Validators.maxLength(14)]],
+    dataNascimento: ['', [Validators.required]],
+    email: [null, [Validators.email, Validators.maxLength(60)]],
+    endereco: [null, [Validators.maxLength(45)]],
+    observacoes: [null],
+    tipoSanguineo: ['O+', [Validators.required]]
+  });
+
+  tipoSanguineoOpcoes: string[] = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   pacientes: PacienteResponseModel[] = [
     {
@@ -94,6 +115,15 @@ export class List {
   ];
 
   showDialog(): void {
+    this.visible = true;
+  }
+
+  cancelar(){
+    this.visible = false;
+    this.pacienteForm.reset();
+  }
+
+  salvar(){
 
   }
 }
