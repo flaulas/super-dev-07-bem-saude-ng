@@ -138,7 +138,7 @@ export class List {
       },
       acceptButtonProps: {
         label: 'Ativar',
-        severity: 'danger'
+        severity: 'success'
       },
       accept: () => {
         this.ativar(recepcionista);

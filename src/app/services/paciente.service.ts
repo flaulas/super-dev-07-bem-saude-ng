@@ -30,8 +30,13 @@ export class PacienteService {
     return this.httpClient.get<PacientePesquisaResponseModel>(url);
   }
 
-  delete(id: string): Observable<void> {
+  inativar(id: string): Observable<void> {
     const url = `${environment.apiUrl}/pacientes/${id}`;
     return this.httpClient.delete<void>(url);
+  }
+
+  ativar(id: string): Observable<void> {
+    const url = `${environment.apiUrl}/pacientes/${id}/ativar`;
+    return this.httpClient.put<void>(url, {});
   }
 }
