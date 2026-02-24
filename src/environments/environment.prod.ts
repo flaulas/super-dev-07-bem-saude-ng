@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: "http://localhost:8000",
+    apiUrl: "https://bemsaude-api-zj40se-4c3b08-187-77-55-26.traefik.me",
     auth0: {
         domain: "dev-zajs5hj6nprc7277.us.auth0.com",
         clientId: "42T8ZRObTjGT9ZVW0HEe35pHZUGaEGCh",
