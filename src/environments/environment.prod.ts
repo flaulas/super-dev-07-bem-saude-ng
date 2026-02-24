@@ -5,6 +5,6 @@ export const environment = {
         domain: "dev-zajs5hj6nprc7277.us.auth0.com",
         clientId: "42T8ZRObTjGT9ZVW0HEe35pHZUGaEGCh",
         audience: "019c72de-b098-7b19-8e8a-4a4888df7d64",
-        redirectUri: "https://bemsaude-ng-ocsyb8-545f1e-187-77-55-26.traefik.me/callback",
+        redirectUri: "https://hisenberg.tech/callback",
     }
 }
